@@ -13,4 +13,14 @@ const fetchLeetcodeContests = async () => {
     }
 }
 
+const fetchCodeChefContests = async () => {
+    try {
+        const response = await axios.get('https://www.codechef.com/api/list/contests');
+        return response.data.future_contests;
+    } catch (error) {
+        console.error('Error fetching codechef contests:', error);
+        return [];
+    }
+}
+
 module.exports = router;
