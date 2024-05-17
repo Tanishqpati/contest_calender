@@ -12,4 +12,12 @@ const oAuth2Client = new google.auth.OAuth2(
     process.env.GOOGLE_REDIRECT_URI
 );
 
+router.get('/google', (req, res)=>{
+    const authUrl = oAuth2Client.generateAuthUrl({
+        access_type: 'offline',
+        scope: ['https://www.googleapis.com/auth/calender'],
+    })
+    res.redirect(authUrl);
+})
+
 module.exports = router;
