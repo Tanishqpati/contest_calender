@@ -1,0 +1,19 @@
+version: '3'
+services:
+  backend:
+    build: ./contest-calendar-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - GOOGLE_REDIRECT_URI=${GOOGLE_REDIRECT_URI}
+    volumes:
+      - ./contest-calendar-backend:/usr/src/app
+
+  frontend:
+    build: ./contest-calendar-frontend
+    ports:
+      - "3000:80"
+    volumes:
+      - ./contest-calendar-frontend:/usr/src/app
