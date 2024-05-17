@@ -20,4 +20,12 @@ router.get('/google', (req, res)=>{
     res.redirect(authUrl);
 })
 
+router.get('/oauth2callback', async (req, res)=>{
+    const { code } = req.query;
+    const { tokens } = await oAuth2Client.getToken(code);
+    oAuth2Client.setCredentials(tokens);
+    req.session.tokens = tokens;
+    res.redirect('http://localhost:3000/success');
+})
+
 module.exports = router;
